@@ -1,0 +1,158 @@
+
+Conversation opened. 2 messages. All messages read.
+
+Skip to content
+Using Gmail with screen readers
+3 of 3,384
+mm
+Inbox
+
+Charumitha M
+ 
+AttachmentsFri, Oct 13, 12:41 PM
+
+Sakthi Ks
+Attachments
+6:42 PM (2 hours ago)
+to me
+
+
+
+---------- Forwarded message ---------
+From: Charumitha M <charumitha31@gmail.com>
+Date: Fri, Oct 13, 2023 at 12:46 PM
+Subject: Fwd: mm
+To: Senthil Kumari Mathana K <rohini19112001@gmail.com>, Sakthi Ks <sakthiks2002@gmail.com>
+
+
+
+
+---------- Forwarded message ---------
+From: Charumitha M <charumitha31@gmail.com>
+Date: Fri, Oct 13, 2023 at 12:41 PM
+Subject: mm
+To: <kssakthi2002@gmail.com>, Charumitha M <charumitha31@gmail.com>, G Sri varsha <varshaguru01@gmail.com>, <aarthika@student.tce.edu>, hemaganesan550@gmail.com <hemaganesan550@gmail.com>, Senthil Kumari Mathana K <rohini19112001@gmail.com>, <ssahana1012@gmail.com>, <anandhm0202@gmail.com>, Jayasuruthy Ilangovan <jayasuruthy2411@gmail.com>
+
+
+
+
+ 6 Attachments
+  •  Scanned by Gmail
+npm install -g expo -cli
+expo init grocery
+cd grocery
+(or) npx react-native init GroceryApp
+cd GroceryApp
+npm install @react-navigation/native @react-navigation/bottom-tabs react-native-appearance
+npm install expo-font
+
+
+import React, { useState, useEffect } from 'react';
+import { View, Text, Appearance, FlatList, TouchableOpacity } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import * as Font from 'expo-font';
+
+const Tab = createBottomTabNavigator();
+
+const ToBuyScreen = () => {
+  const [data, setData] = useState([
+    { id: '1', name: 'Apples' },
+    { id: '2', name: 'Bananas' },
+    // Add more items here
+  ]);
+
+  return (
+    <View style={{ flex: 1 }}>
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <View style={{ padding: 16 }}>
+            <Text>{item.name}</Text>
+          </View>
+        )}
+      />
+    </View>
+  );
+};
+
+const BoughtScreen = () => {
+  const [data, setData] = useState([
+    { id: '1', name: 'Milk' },
+    { id: '2', name: 'Eggs' },
+    // Add more items here
+  ]);
+
+  return (
+    <View style={{ flex: 1 }}>
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <View style={{ padding: 16 }}>
+            <Text>{item.name}</Text>
+          </View>
+        )}
+      />
+    </View>
+  );
+};
+
+const ToAvoidScreen = () => {
+  const [data, setData] = useState([
+    { id: '1', name: 'Cigarettes' },
+    { id: '2', name: 'Soda' },
+    // Add more items here
+  ]);
+
+  return (
+    <View style={{ flex: 1 }}>
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <View style={{ padding: 16 }}>
+            <Text>{item.name}</Text>
+          </View>
+        )}
+      />
+    </View>
+  );
+};
+
+const App = () => {
+  const [fontLoaded, setFontLoaded] = useState(false);
+  const [theme, setTheme] = useState(Appearance.getColorScheme());
+
+  useEffect(() => {
+    Font.loadAsync({
+      'your-custom-font': require('./path-to-your-font.ttf'),
+    }).then(() => setFontLoaded(true));
+  }, []);
+
+  useEffect(() => {
+    const subscription = Appearance.addChangeListener(({ colorScheme }) => {
+      setTheme(colorScheme);
+    });
+
+    return () => subscription.remove();
+  }, []);
+
+  if (!fontLoaded) return null;
+
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="To Buy" component={ToBuyScreen} />
+        <Tab.Screen name="Bought" component={BoughtScreen} />
+        <Tab.Screen name="To Avoid" component={ToAvoidScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default App;
+
+Grocery.txt
+Displaying Book.txt.
