@@ -1,0 +1,107 @@
+EXPERIMENT-9 
+---------------------------------------
+
+App.js
+--------
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Form from './screens/Forms'; 
+import Result from './screens/Result'; 
+
+const Stack = createNativeStackNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="BookForm">
+        <Stack.Screen name="Form" component={Form} />
+        <Stack.Screen name="Result" component={Result} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+
+Forms.js 
+-----------4
+
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
+export default function Forms() {
+  const navigation = useNavigation();
+  return (
+    <View style={styles.container}>
+      <Text style={styles.txt}>FORM</Text>
+      <Text style = {styles.txt}> Enter celsius</Text>
+      <TextInput style = {styles.input} /> 
+
+    <Button title = "Submit" onPress={() => navigation.navigate('Result')} />
+      <StatusBar style="auto" />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  txt: {
+    fontSize: 15,
+  }, 
+  input: {
+    backgroundColor: 'black', 
+    width: 200, 
+    color: 'white',
+  }
+});
+
+
+Result.js 
+-----------
+
+import { StatusBar } from 'expo-status-bar';
+import { ImageBackground, StyleSheet, Text, View, Button, Alert } from 'react-native';
+
+
+const image = { uri: 'https://cdn.pixabay.com/photo/2023/03/21/15/11/ai-generated-7867492_1280.jpg' };
+
+export default function Result() {
+
+    const alertMsg = () => {
+        Alert.alert('The temperature is 87F')
+};
+    return (
+        <View style={styles.container}>
+            <ImageBackground source={ image } style = {styles.img}>
+                <Button title="Show Result" onPress = { alertMsg } />
+                <StatusBar style="auto" />
+            </ImageBackground>
+
+        </View>
+    );
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    img: {
+        flex: 1,
+        alignSelf: 'stretch',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    txt: {
+        color: 'white',
+    }
+    
+});
