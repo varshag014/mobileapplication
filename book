@@ -1,0 +1,141 @@
+
+Conversation opened. 2 messages. All messages read.
+
+Skip to content
+Using Gmail with screen readers
+3 of 3,384
+mm
+Inbox
+
+Charumitha M
+ 
+AttachmentsFri, Oct 13, 12:41 PM
+
+Sakthi Ks
+Attachments
+6:42 PM (2 hours ago)
+to me
+
+
+
+---------- Forwarded message ---------
+From: Charumitha M <charumitha31@gmail.com>
+Date: Fri, Oct 13, 2023 at 12:46 PM
+Subject: Fwd: mm
+To: Senthil Kumari Mathana K <rohini19112001@gmail.com>, Sakthi Ks <sakthiks2002@gmail.com>
+
+
+
+
+---------- Forwarded message ---------
+From: Charumitha M <charumitha31@gmail.com>
+Date: Fri, Oct 13, 2023 at 12:41 PM
+Subject: mm
+To: <kssakthi2002@gmail.com>, Charumitha M <charumitha31@gmail.com>, G Sri varsha <varshaguru01@gmail.com>, <aarthika@student.tce.edu>, hemaganesan550@gmail.com <hemaganesan550@gmail.com>, Senthil Kumari Mathana K <rohini19112001@gmail.com>, <ssahana1012@gmail.com>, <anandhm0202@gmail.com>, Jayasuruthy Ilangovan <jayasuruthy2411@gmail.com>
+
+
+
+
+ 6 Attachments
+  •  Scanned by Gmail
+EXPERIMENT-1 
+
+Step - 1: Run npx create-expo-app bookapp
+Step-2: Run cd bookapp 
+Step-3: Run npm install @react-navigation/native @react-navigation/native-stack in the terminal 
+Step-4: Since it is an expo managed project, run npx expo install react-native-screens react-native-safe-area-context in the terminal 
+
+-----------------------------------------------------------------------
+
+App.js 
+------
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Form from './screens/Forms'; 
+import Result from './screens/Result'; 
+
+const Stack = createNativeStackNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="BookForm">
+        <Stack.Screen name="Form" component={Form} />
+        <Stack.Screen name="Result" component={Result} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+
+Forms.js 
+----------
+
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
+export default function Forms() {
+  const navigation = useNavigation();
+  return (
+    <View style={styles.container}>
+      <Text style={styles.txt}>FORM</Text>
+      <Text style = {styles.txt}> Enter the title of the book</Text>
+      <TextInput style = {styles.input} /> 
+      <Text style={styles.txt}> Enter the author of the book</Text>
+      <TextInput style = {styles.input} /> 
+      <Text style={styles.txt}> Enter the genre of the book</Text>
+      <TextInput style = {styles.input} /> 
+
+    <Button title = "Submit" onPress={() => navigation.navigate('Result')} />
+      <StatusBar style="auto" />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  txt: {
+    fontSize: 15,
+  }, 
+  input: {
+    backgroundColor: 'black', 
+    width: 200, 
+    color: 'white',
+  }
+});
+
+
+Result.js
+---------- 
+
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
+
+export default function Result() {
+  return (
+    <View style={styles.container}>
+      <Text>Book Name: ABC</Text>
+      <Text>Book Title: XYZ</Text>
+      <Text>Book Genre: Horror</Text>
+      <StatusBar style="auto" />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+Book.txt
+Displaying Book.txt.
